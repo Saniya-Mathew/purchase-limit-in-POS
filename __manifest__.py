@@ -18,7 +18,7 @@
 
     'assets': {
         'point_of_sale._assets_pos': [
-            'pos_purchase_limit/static/src/js/product_screen.js',
+            # 'pos_purchase_limit/static/src/js/product_screen.js',
             # 'pos_purchase_limit/static/src/xml/customer_list.xml'
         ],
     },

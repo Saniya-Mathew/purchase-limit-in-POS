@@ -5,13 +5,13 @@
             <th>Customer Tags</th>
         </xpath>
     </t>
-    <t t-name="ClientLine" t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension" owl="1">
-        <xpath expr="//tr/td[last()]" position="after">
-            <td class="text-center">
-                <center>
-                    <t t-esc="props.partner.category_id.name" />
-                </center>
-            </td>
-         </xpath>
-    </t>
+<!--    <t t-name="ClientLine" t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension" owl="1">-->
+<!--        <xpath expr="//tr/td[last()]" position="after">-->
+<!--            <td class="text-center">-->
+<!--                <center>-->
+<!--                    <t t-esc="props.partner.category_id.name" />-->
+<!--                </center>-->
+<!--            </td>-->
+<!--         </xpath>-->
+<!--    </t>-->
 </odoo>
