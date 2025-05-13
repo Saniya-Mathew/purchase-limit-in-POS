@@ -1,4 +1,4 @@
-from odoo import fields,models
+from odoo import api,fields,models
 
 
 class ResPartner(models.Model):
@@ -7,4 +7,10 @@ class ResPartner(models.Model):
     _description = "res partner"
 
     purchase_limit = fields.Boolean(string="Activate Purchase Limit")
-    amount = fields.Integer(string="set the amount")
+    amount = fields.Float(string="Limit amount")
+
+    @api.model
+    def _load_pos_data_fields(self, config_id):
+        result = super()._load_pos_data_fields(config_id)
+        result += ['amount']
+        return result
