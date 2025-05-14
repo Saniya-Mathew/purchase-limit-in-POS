@@ -3,6 +3,7 @@ import { PaymentScreen } from "@point_of_sale/app/screens/payment_screen/payment
 import { patch } from "@web/core/utils/patch";
 import { usePos } from "@point_of_sale/app/store/pos_hook";
 import { AlertDialog } from "@web/core/confirmation_dialog/confirmation_dialog";
+import { rpc } from "@web/core/network/rpc";
 
 
 patch(PaymentScreen.prototype, {
@@ -23,13 +24,6 @@ patch(PaymentScreen.prototype, {
             return;
         }
         var purchaseLimit = client.amount || 0;
-        console.log(purchaseLimit)
-        const balanceAmount = purchaseLimit - totalAmount
-        console.log(balanceAmount)
-//        if (balanceAmount)
-//        purchaseLimit = balanceAmount
-//        console.log(purchaseLimit)
-        client.balance_amount = balanceAmount
         if ( purchaseLimit < totalAmount) {
         await this.env.services.dialog.add(AlertDialog, {
                 title: 'Limit is reached',
@@ -37,6 +31,11 @@ patch(PaymentScreen.prototype, {
             });
             return;
         }
+        const balance_amount = purchaseLimit - totalAmount
+        await rpc("/pos/update_purchase_limit_limit", {
+                partner_id: client.id,
+                balance_amount: balance_amount
+        });
         return super.validateOrder(isForceValidate);
     }
 });

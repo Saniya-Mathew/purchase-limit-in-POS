@@ -12,8 +12,9 @@ class ResPartner(models.Model):
 
     @api.onchange(amount)
     def _onchange_amount(self):
+        print("hehheh")
         if self.amount:
-            self.amount = self.balance_amount
+            self.balance_amount = self.amount
 
     @api.model
     def _load_pos_data_fields(self, config_id):

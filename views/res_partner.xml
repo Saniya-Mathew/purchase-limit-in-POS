@@ -8,7 +8,7 @@
             <xpath expr="//field[@name='property_outbound_payment_method_line_id']" position="after">
                 <field name="purchase_limit"/>
                 <field name= "amount" invisible="purchase_limit == False"/>
-                <field name="balance_amount" invisible="purchase_limit == False"/>
+                <field name="balance_amount" invisible="purchase_limit == False" readonly="1" force_save="1"/>
             </xpath>
         </field>
     </record>
