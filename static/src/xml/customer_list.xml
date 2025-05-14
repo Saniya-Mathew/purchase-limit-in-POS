@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <t t-name="ClientListScreen" t-inherit="point_of_sale.PartnerList" t-inherit-mode="extension" owl="1">
-        <xpath expr="//table[hasclass('table table-hover')]//th[last()]" position="after">
-            <th>Customer Tags</th>
+        <xpath expr="//table[hasclass('table table-hover')]//th[last()]" position="inside">
+            <th> Purchase Limit</th>
+            <th>Balance Amount</th>
         </xpath>
     </t>
-<!--    <t t-name="ClientLine" t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension" owl="1">-->
-<!--        <xpath expr="//tr/td[last()]" position="after">-->
-<!--            <td class="text-center">-->
-<!--                <center>-->
-<!--                    <t t-esc="props.partner.category_id.name" />-->
-<!--                </center>-->
-<!--            </td>-->
-<!--         </xpath>-->
-<!--    </t>-->
 </odoo>

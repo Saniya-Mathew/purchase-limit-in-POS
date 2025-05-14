@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <t t-name="ClientListScreenLine" t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension" owl="1">
+        <xpath expr="//tr[hasclass('partner-line partner-info')]//td[last()-1]" position="before">
+            <td class="partner-limit py-2"><t t-esc="props.partner.amount or ''"/></td>
+            <td class="balance-amount py-2"><t t-esc="props.partner.balance_amount or ''"/></td>
+        </xpath>
+    </t>
+</odoo>

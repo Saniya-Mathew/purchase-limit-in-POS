@@ -8,9 +8,15 @@ class ResPartner(models.Model):
 
     purchase_limit = fields.Boolean(string="Activate Purchase Limit")
     amount = fields.Float(string="Limit amount")
+    balance_amount = fields.Integer(string="Balance amount")
+
+    @api.onchange(amount)
+    def _onchange_amount(self):
+        if self.amount:
+            self.amount = self.balance_amount
 
     @api.model
     def _load_pos_data_fields(self, config_id):
         result = super()._load_pos_data_fields(config_id)
-        result += ['amount']
+        result += ['amount','balance_amount']
         return result

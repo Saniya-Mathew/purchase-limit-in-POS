@@ -13,6 +13,7 @@ patch(PaymentScreen.prototype, {
     async validateOrder(isForceValidate) {
         const currentOrder = this.pos.get_order()
         const client = currentOrder.get_partner();
+        console.log(client.name)
         const totalAmount = this.currentOrder.get_total_with_tax();
         if (!client) {
         await this.env.services.dialog.add(AlertDialog, {
@@ -21,10 +22,18 @@ patch(PaymentScreen.prototype, {
             });
             return;
         }
-        if (client?.amount < totalAmount) {
+        var purchaseLimit = client.amount || 0;
+        console.log(purchaseLimit)
+        const balanceAmount = purchaseLimit - totalAmount
+        console.log(balanceAmount)
+//        if (balanceAmount)
+//        purchaseLimit = balanceAmount
+//        console.log(purchaseLimit)
+        client.balance_amount = balanceAmount
+        if ( purchaseLimit < totalAmount) {
         await this.env.services.dialog.add(AlertDialog, {
                 title: 'Limit is reached',
-                body: 'Operation cannot be completed!.     Purchase limit of the customer is ' + client?.amount,
+                body: 'Operation cannot be completed!.     Purchase limit of the customer is ' + purchaseLimit,
             });
             return;
         }
